@@ -1,47 +1,28 @@
 package com.rzlsad.learning;
 
-import com.rzlsad.learning.config.newHello;
+import com.rzlsad.learning.config.MessageConfiguration;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
+
+
 
 public class App
 {
-    public Fibonacci fibonacci;
     public static void main( String[] args )
     {
-        var file = new File("src\\main\\resource\\config.xml");
-        String path = "";
-        try{
-            System.out.println(path=file.getCanonicalPath());
-
-            List<String> lines = Files.readAllLines(Path.of(path));
-            for(String line : lines){
-                System.out.println(line);
-            }
-
-
-
-        }catch (IOException exception){
-            exception.getStackTrace();
-        }
-
-      ApplicationContext ac = new AnnotationConfigApplicationContext(newHello.class);
-      var hello = (Hello) ac.getBean("hello",com.rzlsad.learning.Hello.class);
-      hello.sayHello();
-        System.out.println( "Hello World!" );
-        var fib = (Fibonacci) ac.getBean("fibonacci",com.rzlsad.learning.Fibonacci.class);
-
-        System.out.println(fib.fib(11));
-
-
+      GenericApplicationContext gac = new AnnotationConfigApplicationContext(MessageConfiguration.class);
+//      GenericApplicationContext gac = new GenericXmlApplicationContext("classpath:beans.xml");
+      var renderer = (MessageRenderer) gac.getBean("renderer",com.rzlsad.learning.MessageRenderer.class);
+      renderer.render();
+      gac.registerBean("registeredBean",String.class,"It is a manually registered bean");
+      gac.registerBean("beanAttributes",com.rzlsad.learning.imp.BeanAttributes.class);
+        //print bean and environment attributes
+      System.out.println(
+              gac.getBean("beanAttributes",com.rzlsad.learning.imp.BeanAttributes.class).getContextInfo()
+              +gac.getBean("environmentAttributes",com.rzlsad.learning.imp.EnvironmentAttributes.class).getEnvironmentInfo()
+      );
+      gac.close();
     }
-}
+
+}//class

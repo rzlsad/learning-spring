@@ -1,7 +1,6 @@
 package com.rzlsad.learning.config;
 
 import com.rzlsad.learning.Fibonacci;
-import com.rzlsad.learning.imp.Loop;
 import com.rzlsad.learning.imp.Recursive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,11 +20,4 @@ public class FibConfig {
     public Fibonacci fibonacci(){
         return new Recursive();
     }
-
-    @Bean
-    @Primary
-    public Fibonacci fibonacci2(){
-        return new Loop();
-    }
-    
 }

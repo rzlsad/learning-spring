@@ -23,8 +23,15 @@
             <version>2.7.2</version>
         </plugin>
     </plugins>
+
+      <resources>
+          <resource>
+              <directory>src/main/resource</directory>
+          </resource>
+      </resources>
   </build>
 
+    
   <dependencies>
       
     <dependency>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="foo1IDxml" name="foo1Axml, foo1Bxml, foo1Cxml" class="com.rzlsad.learning.imp.beanNaming.Foo"/>
+    <bean name="foo2Axml, foo2Bxml, foo2Cxml" class="com.rzlsad.learning.imp.beanNaming.Foo"/>
+    <bean class="com.rzlsad.learning.imp.beanNaming.Foo"/>
+    <bean class="com.rzlsad.learning.imp.beanNaming.Foo"/>
+
+</beans>

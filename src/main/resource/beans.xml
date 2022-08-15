@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="renderer" class="com.rzlsad.learning.imp.message.StandartOutMessageRenderer">
+        <property name="provider" ref="provider"/>
+    </bean>
+
+    <bean id="provider" class="com.rzlsad.learning.imp.message.StandartMessageProvider">
+        <property name="message" value="Hello World!"/>
+    </bean>
+
+    <bean id="beanAttributes" class="com.rzlsad.learning.imp.BeanAttributes"/>
+    <bean id="environmentAttributes" class="com.rzlsad.learning.imp.EnvironmentAttributes"/>
+
+    <bean id="databaseConfig" class="com.rzlsad.learning.config.EnvironmentConfig">
+        <constructor-arg name="name" value="database"/>
+        <constructor-arg name="source">
+            <map>
+                <entry key="database.username" value="admin"/>
+                <entry key="database.password" value="admin"/>
+                <entry key="database.protocol" value="jdbc"/>
+                <entry key="database.subProtocol" value="mysql"/>
+                <entry key="database.URI" value="//localhost:3306"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="loginConfig" class="com.rzlsad.learning.config.EnvironmentConfig">
+        <constructor-arg name="name" value="login"/>
+        <constructor-arg name="source">
+            <map>
+                <entry key="login.username" value="admin@mail.com"/>
+                <entry key="login.password" value="12345"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+</beans>
